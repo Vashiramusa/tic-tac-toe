@@ -14,8 +14,8 @@ puts '1. The game is played on a grid that is 3 squares by 3 squares.
 puts 'Player 1, what is your name?: '
 player1 = gets.chomp
 puts "Ok, #{player1} will you choose 'X' or 'O'?"
-#get user input
-#choice = gets.chomp
+# get user input
+# choice = gets.chomp
 puts 'Player 2, what is your name?: '
 player2 = gets.chomp
 puts "#{player1} it's your turn: choose a number from the available squares"
@@ -23,30 +23,31 @@ puts "#{player1} it's your turn: choose a number from the available squares"
 puts '1 | 2 | 3'
 puts '4 | 5 | 6'
 puts '7 | 8 | 9'
-#get user input
-#move = gets.chomp
+# get user input
+# move = gets.chomp
 puts "#{player2} it's your turn: choose a number from the available squares"
 # display current state of the board
 puts 'X | 2 | 3'
 puts '4 | 5 | 6'
 puts '7 | 8 | 9'
-#get user input
-#move = gets.chomp
+# get user input
+# move = gets.chomp
 puts "#{player1} it's your turn: choose a number from the available squares"
 # display current state of the board
 puts 'X | 1 | O'
 puts '4 | 5 | 6'
 puts '7 | 8 | 9'
-#get user input
-#move = gets.chomp
+# get user input
+# move = gets.chomp
 # the process is repeated until the board is full or a player wins
+# If the game is draw then just display the score and ask if they to play again.
 # In case one of the players wins:
 puts "#{player1} You won!"
 puts 'Score: '
 puts "#{player1}: 3"
 puts "#{player2}: 2"
 puts 'Do you want to play again? yes/no: '
-#get user input
-#game_over = gets.chomp
+# get user input
+# game_over = gets.chomp
 
 # if the user chooses yes then will go back to the start of the game.
