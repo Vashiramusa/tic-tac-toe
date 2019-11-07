@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 # frozen_string_literal: true
+game = true
 
 puts 'Welcome to the Tic Tac Toe game!'
 puts 'Rules for the game: '
@@ -13,41 +14,37 @@ puts '1. The game is played on a grid that is 3 squares by 3 squares.
 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie. '
 puts 'Player 1, what is your name?: '
 player1 = gets.chomp
-puts "Ok, #{player1} will you choose 'X' or 'O'?"
-# get user input
-# choice = gets.chomp
 puts 'Player 2, what is your name?: '
 player2 = gets.chomp
-puts "#{player1} it's your turn: choose a number from the available squares"
-# display current state of the board
-puts '1 | 2 | 3'
-puts '4 | 5 | 6'
-puts '7 | 8 | 9'
-# get user input
-# move = gets.chomp
-puts "#{player2} it's your turn: choose a number from the available squares"
-# display current state of the board
-puts 'X | 2 | 3'
-puts '4 | 5 | 6'
-puts '7 | 8 | 9'
-# get user input
-# move = gets.chomp
-puts "#{player1} it's your turn: choose a number from the available squares"
-# display current state of the board
-puts 'X | 1 | O'
-puts '4 | 5 | 6'
-puts '7 | 8 | 9'
-# get user input
-# move = gets.chomp
-# the process is repeated until the board is full or a player wins
-# If the game is draw then just display the score and ask if they to play again.
-# In case one of the players wins:
-puts "#{player1} You won!"
-puts 'Score: '
-puts "#{player1}: 3"
-puts "#{player2}: 2"
-puts 'Do you want to play again? yes/no: '
-# get user input
-# game_over = gets.chomp
 
-# if the user chooses yes then will go back to the start of the game.
+loop do 
+  puts "Ok, #{player1} will you choose 'X' or 'O'?" 
+  # get user input
+  choice = gets.chomp
+  choice == 'x'|| choice == 'o' ? break : (puts'invalid input, please try again')
+end
+
+current_player = player1
+while game  
+  puts "#{current_player} it's your turn: choose a number from the available squares"
+  # display current state of the board
+  puts '1 | 2 | 3'
+  puts '4 | 5 | 6'
+  puts '7 | 8 | 9'
+  # get user input
+  move = gets.chomp
+
+  if current_player == player1
+    current_player = player2
+  else 
+    current_player = player1
+  end
+
+  if move == 'win'
+    puts "Congratulations #{current_player} you have won!"
+    game = false
+  elsif move == "draw"
+    puts "Is a draw"  
+    game = false
+  end
+end
