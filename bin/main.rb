@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 # frozen_string_literal: true
+
 game = true
 
 puts 'Welcome to the Tic Tac Toe game!'
@@ -17,15 +18,15 @@ player1 = gets.chomp
 puts 'Player 2, what is your name?: '
 player2 = gets.chomp
 
-loop do 
-  puts "Ok, #{player1} will you choose 'X' or 'O'?" 
+loop do
+  puts "Ok, #{player1} will you choose 'X' or 'O'?"
   # get user input
   choice = gets.chomp
-  choice == 'x'|| choice == 'o' ? break : (puts'invalid input, please try again')
+  choice.include?('x' || 'o') ? break : (puts 'invalid input, please try again')
 end
 
 current_player = player1
-while game  
+while game
   puts "#{current_player} it's your turn: choose a number from the available squares"
   # display current state of the board
   puts '1 | 2 | 3'
@@ -33,18 +34,19 @@ while game
   puts '7 | 8 | 9'
   # get user input
   move = gets.chomp
+  # Let the user know if the input is invalid
 
-  if current_player == player1
-    current_player = player2
-  else 
-    current_player = player1
-  end
+  current_player = if current_player == player1
+                     player2
+                   else
+                     player1
+                   end
 
   if move == 'win'
     puts "Congratulations #{current_player} you have won!"
     game = false
-  elsif move == "draw"
-    puts "Is a draw"  
+  elsif move == 'draw'
+    puts 'Is a draw'
     game = false
   end
 end
