@@ -41,6 +41,20 @@ class Board
     position.between?(1, 9) && !position_taken?(position)
   end
 end
+
+class Player
+  attr_accessor :name, :symbol
+   
+  def initialize(name, symbol ='')
+    @name = name
+    @symbol = symbol 
+  end
+
+end  
+
+
+
+
 game = true
 
 puts 'Welcome to the Tic Tac Toe game!'
@@ -53,27 +67,36 @@ puts '1. The game is played on a grid that is 3 squares by 3 squares.
 
 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie. '
 puts 'Player 1, what is your name?: '
-player1 = gets.chomp
+name = gets.chomp
+player1 = Player.new(name)
 puts 'Player 2, what is your name?: '
-player2 = gets.chomp
+name = gets.chomp
+player2 = Player.new(name)
 board = Board.new
 board.reset_board
 
 loop do
-  puts "Ok, #{player1} will you choose 'X' or 'O'?"
+  puts "Ok, #{player1.name} will you choose 'X' or 'O'?"
   # get user input
   choice = gets.chomp
-  choice.include?('x' || 'o') ? break : (puts 'invalid input, please try again')
+    player1.symbol = if choice == 'x'
+                       'x'
+                     elsif choice == 'o'
+                       'o'
+                     end
+          
 end
+
+player1.symbol == 'x' ? player2.symbol = 'o' : player2.symbol = 'x'
 
 current_player = player1
 while game
-  puts "#{current_player} it's your turn: choose a number from the available squares"
+  puts "#{current_player.name} it's your turn: choose a number from the available squares"
   # display current state of the board
   board.display_board
   # get user input
   move = gets.chomp
-  board.register_move(move.to_i, 'x')
+  board.register_move(move.to_i, current_player.symbol)
   # Let the user know if the input is invalid
 
   current_player = if current_player == player1
@@ -83,7 +106,7 @@ while game
                    end
 
   if move == 'win'
-    puts "Congratulations #{current_player} you have won!"
+    puts "Congratulations #{current_player.name} you have won!"
     game = false
   elsif move == 'draw'
     puts 'Is a draw'
