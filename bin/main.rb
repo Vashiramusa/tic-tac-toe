@@ -2,6 +2,45 @@
 
 # frozen_string_literal: true
 
+class Board
+  attr_accessor :board
+
+  def initialize
+    @board = Array.new(9)
+  end
+
+  def reset_board
+    9.times { |i| @board[i] = (i + 1).to_s }
+  end
+
+  def display_board
+    puts '=========='
+    puts "#{@board[0]} | #{@board[1]} | #{@board[2]}"
+    puts '__________'
+    puts "#{@board[3]} | #{@board[4]} | #{@board[5]}"
+    puts '__________'
+    puts "#{@board[6]} | #{@board[7]} | #{@board[8]}"
+    puts '=========='
+  end
+
+  def register_move(position, symbol)
+    if valid_move?(position)
+      @board[position - 1] = symbol
+    else
+      puts 'Invalid move, please try again!'
+    end
+  end
+
+  private
+
+  def position_taken?(position)
+    @board[position - 1] == 'x' || @board[position - 1] == 'o'
+  end
+
+  def valid_move?(position)
+    position.between?(1, 9) && !position_taken?(position)
+  end
+end
 game = true
 
 puts 'Welcome to the Tic Tac Toe game!'
@@ -17,6 +56,8 @@ puts 'Player 1, what is your name?: '
 player1 = gets.chomp
 puts 'Player 2, what is your name?: '
 player2 = gets.chomp
+board = Board.new
+board.reset_board
 
 loop do
   puts "Ok, #{player1} will you choose 'X' or 'O'?"
@@ -29,11 +70,10 @@ current_player = player1
 while game
   puts "#{current_player} it's your turn: choose a number from the available squares"
   # display current state of the board
-  puts '1 | 2 | 3'
-  puts '4 | 5 | 6'
-  puts '7 | 8 | 9'
+  board.display_board
   # get user input
   move = gets.chomp
+  board.register_move(move.to_i, 'x')
   # Let the user know if the input is invalid
 
   current_player = if current_player == player1
