@@ -44,16 +44,12 @@ end
 
 class Player
   attr_accessor :name, :symbol
-   
-  def initialize(name, symbol ='')
+
+  def initialize(name, symbol = '')
     @name = name
-    @symbol = symbol 
+    @symbol = symbol
   end
-
-end  
-
-
-
+end
 
 game = true
 
@@ -68,26 +64,12 @@ puts '1. The game is played on a grid that is 3 squares by 3 squares.
 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie. '
 puts 'Player 1, what is your name?: '
 name = gets.chomp
-player1 = Player.new(name)
+player1 = Player.new(name, 'x')
 puts 'Player 2, what is your name?: '
 name = gets.chomp
-player2 = Player.new(name)
+player2 = Player.new(name, 'o')
 board = Board.new
 board.reset_board
-
-loop do
-  puts "Ok, #{player1.name} will you choose 'X' or 'O'?"
-  # get user input
-  choice = gets.chomp
-    player1.symbol = if choice == 'x'
-                       'x'
-                     elsif choice == 'o'
-                       'o'
-                     end
-          
-end
-
-player1.symbol == 'x' ? player2.symbol = 'o' : player2.symbol = 'x'
 
 current_player = player1
 while game
