@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative './player.rb'
-
 class Board
   attr_reader :board, :player1, :player2
 
