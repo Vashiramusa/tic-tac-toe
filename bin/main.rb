@@ -23,32 +23,22 @@ player1 = Player.new(name, 'x')
 puts 'Player 2, what is your name?: '
 name = gets.chomp
 player2 = Player.new(name, 'o')
-board = Board.new
+board = Board.new(player1, player2)
 board.reset_board
 board.display_board
 
-current_player = player1
-
 while game
-  puts "#{current_player.name} it's your turn: choose a number from the available squares"
-  # display current state of the board
-  board.display_board
-  # get user input
-  move = gets.chomp
-  board.register_move(move.to_i, current_player.symbol)
-  # Let the user know if the input is invalid
-
-  current_player = if current_player == player1
-                     player2
-                   else
-                     player1
-                   end
-
-  if move == 'win'
-    puts "Congratulations #{current_player.name} you have won!"
+  if board.winner?
+    puts "Congratulations #{board.current_player.name} you have won!"
     game = false
-  elsif move == 'draw'
-    puts 'Is a draw'
+  elsif board.draw?
+    puts 'It\'s a draw'
     game = false
+
+  else
+    puts "#{board.current_player.name} it's your turn: choose a number from the available squares"
+    board.display_board
+    move = gets.chomp
+    board.register_move(move.to_i, board.current_player.symbol)
   end
 end

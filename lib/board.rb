@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require_relative './player.rb'
+
 class Board
-  attr_reader :board
+  attr_reader :board, :player1, :player2
 
   WINNING_COMBINATIONS = [
     [0, 4, 8],
@@ -14,8 +16,10 @@ class Board
     [2, 5, 8]
   ].freeze
 
-  def initialize
+  def initialize(player1, player2)
     @board = Array.new(9)
+    @player1 = player1
+    @player2 = player2
   end
 
   def winner?
@@ -37,7 +41,14 @@ class Board
     !winner? && full?
   end
 
-  
+  def current_player
+    player = if (turn_count % 2).zero?
+               @player1
+             else
+               @player2
+             end
+    player
+  end
 
   def reset_board
     9.times { |i| @board[i] = (i + 1).to_s }
