@@ -2,54 +2,8 @@
 
 # frozen_string_literal: true
 
-class Board
-  attr_accessor :board
-
-  def initialize
-    @board = Array.new(9)
-  end
-
-  def reset_board
-    9.times { |i| @board[i] = (i + 1).to_s }
-  end
-
-  def display_board
-    puts '=========='
-    puts "#{@board[0]} | #{@board[1]} | #{@board[2]}"
-    puts '__________'
-    puts "#{@board[3]} | #{@board[4]} | #{@board[5]}"
-    puts '__________'
-    puts "#{@board[6]} | #{@board[7]} | #{@board[8]}"
-    puts '=========='
-  end
-
-  def register_move(position, symbol)
-    if valid_move?(position)
-      @board[position - 1] = symbol
-    else
-      puts 'Invalid move, please try again!'
-    end
-  end
-
-  private
-
-  def position_taken?(position)
-    @board[position - 1] == 'x' || @board[position - 1] == 'o'
-  end
-
-  def valid_move?(position)
-    position.between?(1, 9) && !position_taken?(position)
-  end
-end
-
-class Player
-  attr_accessor :name, :symbol
-
-  def initialize(name, symbol = '')
-    @name = name
-    @symbol = symbol
-  end
-end
+require_relative '../lib/player.rb'
+require_relative '../lib/board.rb'
 
 game = true
 
@@ -62,6 +16,7 @@ puts '1. The game is played on a grid that is 3 squares by 3 squares.
 3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.
 
 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie. '
+
 puts 'Player 1, what is your name?: '
 name = gets.chomp
 player1 = Player.new(name, 'x')
@@ -70,8 +25,10 @@ name = gets.chomp
 player2 = Player.new(name, 'o')
 board = Board.new
 board.reset_board
+board.display_board
 
 current_player = player1
+
 while game
   puts "#{current_player.name} it's your turn: choose a number from the available squares"
   # display current state of the board
