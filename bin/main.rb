@@ -29,9 +29,11 @@ board.display_board
 
 while game
   if board.winner?
+    board.display_board
     puts "Congratulations #{board.current_player.name} you have won!"
     game = false
   elsif board.draw?
+    board.display_board
     puts 'It\'s a draw'
     game = false
 

@@ -18,6 +18,7 @@ class Board
     @board = Array.new(9)
     @player1 = player1
     @player2 = player2
+    @turn_count = 0
   end
 
   def winner?
@@ -27,12 +28,8 @@ class Board
     end
   end
 
-  def turn_count
-    @board.select { |i| i == 'x' || i == 'o' }.size # rubocop:disable Style/MultipleComparison
-  end
-
   def full?
-    turn_count == 9
+    @turn_count == 9
   end
 
   def draw?
@@ -40,7 +37,7 @@ class Board
   end
 
   def current_player
-    player = if (turn_count % 2).zero?
+    player = if (@turn_count % 2).zero?
                @player1
              else
                @player2
@@ -65,6 +62,7 @@ class Board
   def register_move(position, symbol)
     if valid_move?(position)
       @board[position - 1] = symbol
+      @turn_count += 1 unless winner?
     else
       puts 'Invalid move, please try again!'
     end
