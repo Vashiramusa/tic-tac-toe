@@ -50,13 +50,14 @@ class Board
   end
 
   def display_board
-    puts '=========='
-    puts "#{@board[0]} | #{@board[1]} | #{@board[2]}"
-    puts '__________'
-    puts "#{@board[3]} | #{@board[4]} | #{@board[5]}"
-    puts '__________'
-    puts "#{@board[6]} | #{@board[7]} | #{@board[8]}"
-    puts '=========='
+    lines = '========='
+    "#{lines}\n" \
+    "#{board[0]} | #{board[1]} | #{board[2]}\n" \
+    "---------\n" \
+    "#{board[3]} | #{board[4]} | #{board[5]}\n" \
+    "---------\n" \
+    "#{board[6]} | #{board[7]} | #{board[8]}\n" \
+    "#{lines}"
   end
 
   def register_move(position, symbol)

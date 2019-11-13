@@ -28,16 +28,16 @@ board.reset_board
 
 while game
   if board.winner?
-    board.display_board
+    puts board.display_board
     puts "Congratulations #{board.current_player.name} you have won!"
     game = false
   elsif board.draw?
-    board.display_board
+    puts board.display_board
     puts 'It\'s a draw'
     game = false
   else
     puts "#{board.current_player.name} it's your turn: choose a number from the available squares"
-    board.display_board
+    puts board.display_board
     move = gets.chomp
     puts board.register_move(move.to_i, board.current_player.symbol)
   end
