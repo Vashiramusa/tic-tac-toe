@@ -64,7 +64,7 @@ class Board
       @board[position - 1] = symbol
       @turn_count += 1 unless winner?
     else
-      puts 'Invalid move, please try again!'
+      'Invalid move, please try again!'
     end
   end
 

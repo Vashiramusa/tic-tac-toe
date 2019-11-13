@@ -25,7 +25,6 @@ name = gets.chomp
 player2 = Player.new(name, 'o')
 board = Board.new(player1, player2)
 board.reset_board
-board.display_board
 
 while game
   if board.winner?
@@ -41,6 +40,6 @@ while game
     puts "#{board.current_player.name} it's your turn: choose a number from the available squares"
     board.display_board
     move = gets.chomp
-    board.register_move(move.to_i, board.current_player.symbol)
+    puts board.register_move(move.to_i, board.current_player.symbol)
   end
 end
