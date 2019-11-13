@@ -35,7 +35,6 @@ while game
     board.display_board
     puts 'It\'s a draw'
     game = false
-
   else
     puts "#{board.current_player.name} it's your turn: choose a number from the available squares"
     board.display_board
