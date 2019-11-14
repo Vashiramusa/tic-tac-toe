@@ -52,4 +52,53 @@ RSpec.describe Board do
       expect(board.current_player).to eql(player1)
     end
   end
+
+  describe '#full?' do
+    context 'Board not full'
+    it 'Checks if all the positions in the board are occupied' do
+      expect(board.full?).to eq(false)
+    end
+
+    context 'Board full'
+    it 'Checks if all the positions in the board are occupied' do
+      board.reset_board
+      board.register_move(3, player1.symbol)
+      board.register_move(2, player2.symbol)
+      board.register_move(4, player1.symbol)
+      board.register_move(1, player2.symbol)
+      board.register_move(5, player1.symbol)
+      board.register_move(6, player2.symbol)
+      board.register_move(8, player1.symbol)
+      board.register_move(7, player2.symbol)
+      board.register_move(9, player1.symbol)
+      expect(board.full?).to eq(true)
+    end
+  end
+
+  describe '#draw?' do
+    it 'Checks if there is a draw after all positions are occupied and no winner' do
+      board.reset_board
+      board.register_move(3, player1.symbol)
+      board.register_move(2, player2.symbol)
+      board.register_move(4, player1.symbol)
+      board.register_move(1, player2.symbol)
+      board.register_move(5, player1.symbol)
+      board.register_move(6, player2.symbol)
+      board.register_move(8, player1.symbol)
+      board.register_move(7, player2.symbol)
+      board.register_move(9, player1.symbol)
+      expect(board.draw?).to eq(true)
+    end
+  end
+
+  describe '#winner?' do
+    context 'diagonal combination'
+    it 'returns the winning combination with position - 1' do
+      board.reset_board
+      board.register_move(3, player1.symbol)
+      board.register_move(5, player1.symbol)
+      board.register_move(7, player1.symbol)
+      expect(board.winner?).to eq([2, 4, 6])
+    end
+  end
 end
