@@ -1,0 +1,33 @@
+
+Board
+  #initialize
+[32m    should init an instance of the Board class[0m
+  #reset_board
+[32m    fills the empty elements of a new board with string numbers from 1 to 9[0m
+  #register_move
+[32m    sets player 1 symbol in position 1 of the board[0m
+  #register_move
+[32m    sets player 2 symbol in position 3 of the board[0m
+  #register_move
+[32m    checks if the selected position is between 1-9, returns invalid input message if occupied or out of range[0m
+  #current_player
+[32m    displays the current players name based on instance variable @turn_count, player 1 if even, player2 if odd[0m
+[32m    displays the current players name based on instance variable @turn_count, player 1 if even, player2 if odd[0m
+  #full?
+[32m    Checks if all the positions in the board are occupied[0m
+[32m    Checks if all the positions in the board are occupied[0m
+  #draw?
+[32m    Checks if there is a draw after all positions are occupied and no winner[0m
+  #winner?
+[32m    returns the winning combination with position - 1[0m
+
+Player
+  #initialize
+[32m    assigns name to new player 1[0m
+[32m    assigns symbol to new player 1[0m
+[32m    assigns name to new player 2[0m
+[32m    assigns symbol to new player 2[0m
+
+Finished in 0.00496 seconds (files took 1.41 seconds to load)
+[32m15 examples, 0 failures[0m
+
